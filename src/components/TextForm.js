@@ -22,7 +22,11 @@ export default function TextForm(props) {
         // console.log("On change");
         setText(event.target.value)
     }
-
+    const speak = () => {
+        let msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        window.speechSynthesis.speak(msg);
+      }
     const [text, setText] = useState(''); 
     // text = "new text"; // Wrong way to change the state
     // setText("new text"); // Correct way to change the state
@@ -38,6 +42,7 @@ export default function TextForm(props) {
             <button className="btn btn-primary mx-3" onClick={handleUpClick}>Convert to Uppercase</button>
             <button className="btn btn-primary mx-3" onClick={handleDownClick}>Convert to Lowercase</button>
             <button className="btn btn-primary mx-3" onClick={handleClearClick}>Clear</button>
+            <button type="submit" onClick={speak} className="btn btn-primary mx-3">Speak</button>
         </div>
         <div className="container my-3">
         <h1>Summary</h1>
